@@ -16,10 +16,6 @@ bool WorkerSample::run(const std::shared_ptr<void> data) {
 
 bool WorkerSampleWithAppMsg::run(const std::shared_ptr<void> data){
 
-
-    SPDLOG_DEBUG("Calling WorkerSampleWithAppMsg::run");
-
-
     while (true) {
         OptiTrackDataMsg* md = appMsg->optiTrackDataMessenger->receive();
         if (md != nullptr) {
@@ -27,8 +23,9 @@ bool WorkerSampleWithAppMsg::run(const std::shared_ptr<void> data){
             SPDLOG_INFO("Rigid Bodies count: {}", md->optiTrackData.nRigidBodies);
             for (int i = 0; i < md->optiTrackData.nRigidBodies; i++) {
                 //bool bTrackingValid = md->optiTrackData.RigidBodies[i].params & 0x01;
-                SPDLOG_INFO("Rigid body [id={}]: x={} y={} z={}",
+                SPDLOG_INFO("Rigid body [id={}, name={}]: x={} y={} z={}",
                     md->optiTrackData.RigidBodies[i].ID,
+                    md->optiTrackDataDescriptions.arrDataDescriptions[i].Data.RigidBodyDescription->szName,
                     md->optiTrackData.RigidBodies[i].x,
                     md->optiTrackData.RigidBodies[i].y,
                     md->optiTrackData.RigidBodies[i].z

@@ -468,6 +468,11 @@ bool Application::run(){
         SDL_GL_SwapWindow(window);
     }
 
+    // Request OptiTrack termination in case it's still running
+    auto msg = appMsg->optiTrackTerminationRequestMessenger->prepareMsg();
+    msg->isRequested = true;
+    appMsg->optiTrackTerminationRequestMessenger->send();
+
     engineSample->terminateAll();
     engineSample->reset();
 
