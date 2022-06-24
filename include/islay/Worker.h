@@ -11,7 +11,7 @@
 #include <iostream>
 
 #include <typeinfo>
-#include <cxxabi.h> // for abi::__cxa_demangle
+//#include <cxxabi.h> // for abi::__cxa_demangle
 
 #include "AppMsg.h"
 #include "Logger.h"
@@ -115,7 +115,7 @@ public:
              t(std::move(std::make_shared<T>()))
     {
 //        SPDLOG_DEBUG("Construct WorkerManager(std::string&& _workerName)");
-        std::string demangledClassName = abi::__cxa_demangle(typeid(T).name(), 0, 0, nullptr);
+//        std::string demangledClassName = abi::__cxa_demangle(typeid(T).name(), 0, 0, nullptr);
         SPDLOG_DEBUG("WorkerManager created for class {}", demangledClassName);
     }
 
@@ -124,7 +124,7 @@ public:
               status(WORKER_STATUS::IDLE),
               t(std::move(std::make_shared<T>(_appMsg))) {
 //        SPDLOG_DEBUG("Construct WorkerManager(std::string&& _workerName, AppMsgPtr _appMsg)");
-        std::string demangledClassName = abi::__cxa_demangle(typeid(T).name(), 0, 0, nullptr);
+//        std::string demangledClassName = abi::__cxa_demangle(typeid(T).name(), 0, 0, nullptr);
         SPDLOG_DEBUG("WorkerManager created for class {}", demangledClassName);
     }
 
