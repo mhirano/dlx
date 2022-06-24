@@ -141,19 +141,23 @@
     <ClCompile Include="..\..\src\Application.cpp" />
     <ClCompile Include="..\..\src\Engine.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\OptiTrack.cpp" />
     <ClCompile Include="..\..\src\WorkerSample.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Application.h" />
-    <ClInclude Include="..\..\include\AppMsg.h" />
-    <ClInclude Include="..\..\include\Config.h" />
+    <ClInclude Include="..\..\include\islay\Application.h" />
+    <ClInclude Include="..\..\include\islay\AppMsg.h" />
+    <ClInclude Include="..\..\include\islay\Config.h" />
     <ClInclude Include="..\..\include\Engine.h" />
-    <ClInclude Include="..\..\include\gl.h" />
-    <ClInclude Include="..\..\include\ImageTexture.h" />
-    <ClInclude Include="..\..\include\imgui_apps.h" />
-    <ClInclude Include="..\..\include\InterThreadMessenger.hpp" />
-    <ClInclude Include="..\..\include\Logger.h" />
-    <ClInclude Include="..\..\include\Utility.h" />
+    <ClInclude Include="..\..\include\islay\gl.h" />
+    <ClInclude Include="..\..\include\islay\ImageTexture.h" />
+    <ClInclude Include="..\..\include\islay\imgui_apps.h" />
+    <ClInclude Include="..\..\include\islay\InterThreadMessenger.hpp" />
+    <ClInclude Include="..\..\include\islay\Logger.h" />
+    <ClInclude Include="..\..\include\islay\ThreadSafeQueue.h" />
+    <ClInclude Include="..\..\include\islay\Utility.h" />
+    <ClInclude Include="..\..\include\OptiTrack.h" />
+    <ClInclude Include="..\..\include\WorkerSample.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

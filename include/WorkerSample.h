@@ -25,5 +25,15 @@ public:
     bool run(const std::shared_ptr<void> data);
 };
 
+/**
+ * OptiTrack
+ */
+class WorkerOptiTrack : public WorkerBase {
+public:
+    explicit WorkerOptiTrack(AppMsgPtr appMsg) : WorkerBase(appMsg) {};
+    bool run(const std::shared_ptr<void> data);
+};
+
+
 
 #endif //ISLAY_WORKERSAMPLE_H

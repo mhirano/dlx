@@ -7,12 +7,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\3rdparty\implot;$(SolutionDir)..\3rdparty\imgui\examples\libs\gl3w;$(SolutionDir)..\3rdparty\imgui\examples;$(SolutionDir)..\3rdparty\imgui;$(SolutionDir)..\3rdparty\spdlog\include;$(SolutionDir)..\3rdparty\rapidjson\include;C:\dev\opencv-4.5.5\build\install\include;C:\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mhirano\Documents\Projects\dlx\3rdparty\NatNetSDK\include;$(SolutionDir)..\3rdparty\implot;$(SolutionDir)..\3rdparty\imgui\examples\libs\gl3w;$(SolutionDir)..\3rdparty\imgui\examples;$(SolutionDir)..\3rdparty\imgui;$(SolutionDir)..\3rdparty\spdlog\include;$(SolutionDir)..\3rdparty\rapidjson\include;C:\dev\opencv-4.5.5\build\install\include;C:\eigen-3.4.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\dev\opencv-4.5.5\build\install\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\mhirano\Documents\Projects\dlx\3rdparty\NatNetSDK\lib\x64;C:\dev\opencv-4.5.5\build\install\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_core455d.lib;opencv_highgui455d.lib;opencv_imgcodecs455d.lib;opencv_imgproc455d.lib;opencv_videoio455d.lib;opencv_video455d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

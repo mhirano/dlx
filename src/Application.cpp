@@ -174,9 +174,9 @@ bool Application::run(){
         ImGui::NewFrame();
 
 // Dear ImGui demo
-        {
-            ImGui::ShowDemoWindow();
-        }
+        //{
+        //    ImGui::ShowDemoWindow();
+        //}
 
         {
             const float DISTANCE = 10.0f;
@@ -188,16 +188,17 @@ bool Application::run(){
             ImGui::SetNextWindowBgAlpha(0.35f); // Transparent background
             if(ImGui::Begin("Command palette", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav))
             {
-                ImGui::Text("Workers:");
+                ImGui::Text("Run OptiTrack");
                 ImGui::NewLine(); ImGui::SameLine();
-                ImGui::Text("WorkerSample");
-                ImGui::NewLine(); ImGui::SameLine();
-                if (ImGui::Button("Launch##WorkerSample")) {
-                    engineSample->runWorkerSample();
+                if (ImGui::Button("Launch##OptiTrack")) {
+                    engineSample->runOptiTrack();
                 }
                 ImGui::SameLine();
-                if (ImGui::Button("Terminate##WorkerSample")) {
-                    engineSample->terminateWorker("WorkerSample");
+                if (ImGui::Button("Terminate##OptiTrack")) {
+                    auto msg = appMsg->optiTrackTerminationRequestMessenger->prepareMsg();
+                    msg->isRequested = true;
+                    appMsg->optiTrackTerminationRequestMessenger->send();
+                    engineSample->terminateWorker("OptiTrack");
                 }
                 ImGui::NewLine(); ImGui::SameLine();
                 ImGui::Text("WorkerSampleWithAppMsg");
@@ -319,32 +320,32 @@ bool Application::run(){
             }
         }
 
-        {
-            static float xs1[1001], ys1[1001];
-            double DEMO_TIME = ImGui::GetTime();
-            for (int i = 0; i < 1001; ++i) {
-                xs1[i] = i * 0.001f;
-                ys1[i] = 0.5f + 0.5f * sinf(50 * (xs1[i] + (float)DEMO_TIME / 10));
-            }
-            static double xs2[11], ys2[11];
-            for (int i = 0; i < 11; ++i) {
-                xs2[i] = i * 0.1f;
-                ys2[i] = xs2[i] * xs2[i];
-            }
-            ImGui::Begin("Plot");
-            ImGui::BulletText("Anti-aliasing can be enabled from the plot's context menu (see Help).");
-            if (ImPlot::BeginPlot("Line Plot", "x", "f(x)")) {
-                ImPlot::PlotLine("sin(x)", xs1, ys1, 1001);
-                ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
-                ImPlot::PlotLine("x^2", xs2, ys2, 11);
-                ImPlot::EndPlot();
-            }
-            ImGui::End();
-        }
+		/*{
+			static float xs1[1001], ys1[1001];
+			double DEMO_TIME = ImGui::GetTime();
+			for (int i = 0; i < 1001; ++i) {
+				xs1[i] = i * 0.001f;
+				ys1[i] = 0.5f + 0.5f * sinf(50 * (xs1[i] + (float)DEMO_TIME / 10));
+			}
+			static double xs2[11], ys2[11];
+			for (int i = 0; i < 11; ++i) {
+				xs2[i] = i * 0.1f;
+				ys2[i] = xs2[i] * xs2[i];
+			}
+			ImGui::Begin("Plot");
+			ImGui::BulletText("Anti-aliasing can be enabled from the plot's context menu (see Help).");
+			if (ImPlot::BeginPlot("Line Plot", "x", "f(x)")) {
+				ImPlot::PlotLine("sin(x)", xs1, ys1, 1001);
+				ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
+				ImPlot::PlotLine("x^2", xs2, ys2, 11);
+				ImPlot::EndPlot();
+			}
+			ImGui::End();
+		}*/
 
-        {
-            DrawJsonConfig("config", Config::get_instance().getDocument());
-        }
+        //{
+        //    DrawJsonConfig("config", Config::get_instance().getDocument());
+        //}
 
         {
             Logger::get_instance().logger->flush();

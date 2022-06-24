@@ -156,6 +156,7 @@ public:
             t->requestTerminate();
             SPDLOG_DEBUG("***********************TERMINATING {}**********************", workerName);
         }
+
         return true;
     };
 

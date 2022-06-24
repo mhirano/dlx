@@ -21,6 +21,8 @@ public:
 
     bool runWorkerSample();
     bool runWorkerSampleWithAppMsg();
+    
+    bool runOptiTrack();
 };
 
 

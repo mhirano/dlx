@@ -5,6 +5,9 @@
 #include "Engine.h"
 #include "WorkerSample.h"
 
+#include <opencv2/opencv.hpp>
+#include <OptiTrack.h>
+
 bool Engine::run() {
     return true;
 }
@@ -43,6 +46,20 @@ bool Engine::runWorkerSampleWithAppMsg() {
      * Run the worker
      */
     runWorker("WorkerSampleWithAppMsg", hoge);
+
+    return true;
+}
+
+
+
+/**
+ * OptiTrack
+ */
+
+bool Engine::runOptiTrack() {
+
+    registerWorkerWithAppMsg<WorkerOptiTrack>("OptiTrack");
+    runWorker("OptiTrack");
 
     return true;
 }

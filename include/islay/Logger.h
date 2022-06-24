@@ -6,6 +6,7 @@
 #define ISLAY_LOGGER_H
 
 #include <iostream>
+#include <sstream>
 
 #ifdef DEBUG
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE // SPDLOG_LEVEL_TRACE
