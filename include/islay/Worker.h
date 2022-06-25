@@ -116,7 +116,7 @@ public:
     {
 //        SPDLOG_DEBUG("Construct WorkerManager(std::string&& _workerName)");
 //        std::string demangledClassName = abi::__cxa_demangle(typeid(T).name(), 0, 0, nullptr);
-        SPDLOG_DEBUG("WorkerManager created for class {}", demangledClassName);
+//        SPDLOG_DEBUG("WorkerManager created for class {}", demangledClassName);
     }
 
     explicit WorkerManager(std::string _workerName, AppMsgPtr _appMsg)
@@ -125,7 +125,7 @@ public:
               t(std::move(std::make_shared<T>(_appMsg))) {
 //        SPDLOG_DEBUG("Construct WorkerManager(std::string&& _workerName, AppMsgPtr _appMsg)");
 //        std::string demangledClassName = abi::__cxa_demangle(typeid(T).name(), 0, 0, nullptr);
-        SPDLOG_DEBUG("WorkerManager created for class {}", demangledClassName);
+//        SPDLOG_DEBUG("WorkerManager created for class {}", demangledClassName);
     }
 
     /**

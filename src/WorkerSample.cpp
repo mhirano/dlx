@@ -16,6 +16,7 @@ bool WorkerSample::run(const std::shared_ptr<void> data) {
 
 bool WorkerSampleWithAppMsg::run(const std::shared_ptr<void> data){
 
+#if WITH_OPTI
     while (true) {
         OptiTrackDataMsg* md = appMsg->optiTrackDataMessenger->receive();
         if (md != nullptr) {
@@ -41,10 +42,12 @@ bool WorkerSampleWithAppMsg::run(const std::shared_ptr<void> data){
                 );
             }
         }
+
         if (checkIfTerminateRequested()) {
             break;
         }
     }
+#endif
 
     // Send termination request to OptiTrack
     //auto msg = appMsg->optiTrackTerminationRequestMessenger->prepareMsg();
@@ -106,9 +109,12 @@ bool WorkerSampleWithAppMsg::run(const std::shared_ptr<void> data){
 
 
 bool WorkerOptiTrack::run(const std::shared_ptr<void> data) {
-
+#if WITH_OPTI
     OptiTrack opti(appMsg);
     opti.run();
+#else
+    SPDLOG_ERROR("OptiTrack is not enabled. Check DeviceSetting.h");
+#endif
 
     return true;
 }

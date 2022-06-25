@@ -7,6 +7,9 @@
 #ifndef OPTITRACK_H
 #define OPTITRACK_H
 
+#include "DeviceSetting.h"
+#if WITH_OPTI
+
 #pragma comment(lib, "NatNetLib")
 
 #include <inttypes.h>
@@ -81,5 +84,7 @@ public:
 	// 作成したが、利用せず
 	bool getRigidBodyIDByName(std::string rigidBodyName);
 };
+
+#endif
 
 #endif //OPTITRACK_H

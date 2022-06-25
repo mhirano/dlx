@@ -16,6 +16,8 @@
 
 #include "Engine.h"
 
+#include "DeviceSetting.h"
+
 Application::Application() {
 // Setup SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
@@ -188,6 +190,7 @@ bool Application::run(){
             ImGui::SetNextWindowBgAlpha(0.35f); // Transparent background
             if(ImGui::Begin("Command palette", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav))
             {
+#if WITH_OPTI
                 ImGui::Text("Run OptiTrack");
                 ImGui::NewLine(); ImGui::SameLine();
                 if (ImGui::Button("Launch##OptiTrack")) {
@@ -200,6 +203,8 @@ bool Application::run(){
                     appMsg->optiTrackTerminationRequestMessenger->send();
                     engineSample->terminateWorker("OptiTrack");
                 }
+                ImGui::NewLine(); ImGui::SameLine();
+#endif
                 ImGui::NewLine(); ImGui::SameLine();
                 ImGui::Text("WorkerSampleWithAppMsg");
                 ImGui::NewLine(); ImGui::SameLine();
@@ -469,9 +474,11 @@ bool Application::run(){
     }
 
     // Request OptiTrack termination in case it's still running
+#if WITH_OPTI
     auto msg = appMsg->optiTrackTerminationRequestMessenger->prepareMsg();
     msg->isRequested = true;
     appMsg->optiTrackTerminationRequestMessenger->send();
+#endif
 
     engineSample->terminateAll();
     engineSample->reset();
