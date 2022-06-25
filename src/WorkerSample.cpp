@@ -10,7 +10,12 @@
 #include <opencv2/opencv.hpp>
 #include "OptiTrack.h"
 
-// ThreadSafeQueueとかを用意しておいて，突っ込んでいく？
+#include <islay/ThreadSafeQueue.h>
+
+struct OptiTrackData{
+    // To be implemented
+};
+ThreadSafeQueue<OptiTrackData> optiTrackData;
 
 bool WorkerMain::run(const std::shared_ptr<void> data){
 
@@ -23,7 +28,7 @@ bool WorkerMain::run(const std::shared_ptr<void> data){
      * Retrieve data passed by user
      */
     std::shared_ptr<int> i = (std::static_pointer_cast<int>) (data);
-    SPDLOG_DEBUG("Received value from EngineOffline::runTest: {}", *i);
+    SPDLOG_DEBUG("Received value : {}", *i);
 
     /**
      * Main process
@@ -63,7 +68,7 @@ bool WorkerMain::run(const std::shared_ptr<void> data){
             }
         }
     });
-    SPDLOG_INFO("WorkerSampleWithAppMsg took {}ms", elapsedTimeInMs);
+    SPDLOG_INFO("WorkerMain took {}ms", elapsedTimeInMs);
 
     return true;
 }
@@ -108,9 +113,9 @@ bool WorkerOptiTrackClient::run(const std::shared_ptr<void> data) {
             }
         }
 
-        // 認識したやつを溜めておくスレッドを用意しておく
-        // ThreadSafeQueueとかに突っ込んでいく
-
+        // Store OptiTrack data
+        OptiTrackData data;
+        optiTrackData.push(data);
 
         if (checkIfTerminateRequested()) {
             break;
