@@ -8,29 +8,29 @@
 #include <islay/Worker.h>
 
 /**
- * @brief Sample class of worker without application messenger
+ * @brief Your main code comes here!
  */
-class WorkerSample : public WorkerBase {
+class WorkerMain : public WorkerBase {
 public:
-    explicit WorkerSample(): WorkerBase(){};
+    explicit WorkerMain (AppMsgPtr appMsg): WorkerBase(appMsg){};
     bool run(const std::shared_ptr<void> data);
 };
 
 /**
- * @brief Sample class of worker with application messenger
+ * @brief OptiTrack server
  */
-class WorkerSampleWithAppMsg : public WorkerBase {
+class WorkerOptiTrackServer : public WorkerBase {
 public:
-    explicit WorkerSampleWithAppMsg (AppMsgPtr appMsg): WorkerBase(appMsg){};
+    explicit WorkerOptiTrackServer(AppMsgPtr appMsg) : WorkerBase(appMsg) {};
     bool run(const std::shared_ptr<void> data);
 };
 
 /**
- * OptiTrack
+ * @brief OptiTrack client
  */
-class WorkerOptiTrack : public WorkerBase {
+class WorkerOptiTrackClient : public WorkerBase {
 public:
-    explicit WorkerOptiTrack(AppMsgPtr appMsg) : WorkerBase(appMsg) {};
+    explicit WorkerOptiTrackClient(AppMsgPtr appMsg) : WorkerBase(appMsg) {};
     bool run(const std::shared_ptr<void> data);
 };
 

@@ -191,29 +191,32 @@ bool Application::run(){
             if(ImGui::Begin("Command palette", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav))
             {
 #if WITH_OPTI
+                ImGui::NewLine(); ImGui::SameLine();
                 ImGui::Text("Run OptiTrack");
                 ImGui::NewLine(); ImGui::SameLine();
                 if (ImGui::Button("Launch##OptiTrack")) {
-                    engineSample->runOptiTrack();
+                    engineSample->runOptiTrackServer();
+                    engineSample->runOptiTrackClient();
                 }
                 ImGui::SameLine();
                 if (ImGui::Button("Terminate##OptiTrack")) {
                     auto msg = appMsg->optiTrackTerminationRequestMessenger->prepareMsg();
                     msg->isRequested = true;
                     appMsg->optiTrackTerminationRequestMessenger->send();
-                    engineSample->terminateWorker("OptiTrack");
+                    engineSample->terminateWorker("OptiTrackServer");
+                    engineSample->terminateWorker("OptiTrackClient");
                 }
                 ImGui::NewLine(); ImGui::SameLine();
 #endif
                 ImGui::NewLine(); ImGui::SameLine();
-                ImGui::Text("WorkerSampleWithAppMsg");
+                ImGui::Text("WorkerMain");
                 ImGui::NewLine(); ImGui::SameLine();
-                if (ImGui::Button("Launch##WorkerSampleWithAppMsg")) {
+                if (ImGui::Button("Launch##WorkerMain")) {
                     engineSample->runWorkerSampleWithAppMsg();
                 }
                 ImGui::SameLine();
-                if (ImGui::Button("Terminate##WorkerSampleWithAppMsg")) {
-                    engineSample->terminateWorker("WorkerSampleWithAppMsg");
+                if (ImGui::Button("Terminate##WorkerMain")) {
+                    engineSample->terminateWorker("WorkerMain");
                 }
                 ImGui::NewLine(); ImGui::SameLine();
                 ImGui::Text("Delete workers");
@@ -266,8 +269,6 @@ bool Application::run(){
             }
             ImGui::End();
         }
-
-
 
         /// Destroy OpenCV windows if exists
         if(selectedShowImageMode == SHOW_IMAGE_MODE::IMGUI) { /// Use ImGui

@@ -1,4 +1,3 @@
-
 #include <islay/Logger.h>
 //#include <islay/ThreadSafeQueue.h>
 

@@ -19,10 +19,10 @@ public:
         return true;
     };
 
-    bool runWorkerSample();
     bool runWorkerSampleWithAppMsg();
     
-    bool runOptiTrack();
+    bool runOptiTrackServer();
+    bool runOptiTrackClient();
 };
 
 

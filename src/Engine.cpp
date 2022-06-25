@@ -12,30 +12,11 @@ bool Engine::run() {
     return true;
 }
 
-bool Engine::runWorkerSample() {
-    /*
-     * Register a worker with its name
-     */
-    registerWorker<WorkerSample>("WorkerSample");
-
-    /*
-     * You can pass a variable to the worker as a shared pointer.
-     */
-    std::shared_ptr<int> hoge(new int(123));
-
-    /*
-     * Run the worker
-     */
-    runWorker("WorkerSample", hoge);
-
-    return true;
-}
-
 bool Engine::runWorkerSampleWithAppMsg() {
     /*
      * Register a worker with its name
      */
-    registerWorkerWithAppMsg<WorkerSampleWithAppMsg>("WorkerSampleWithAppMsg");
+    registerWorkerWithAppMsg<WorkerMain>("WorkerMain");
 
     /*
      * You can pass a variable to the worker as a shared pointer.
@@ -45,7 +26,7 @@ bool Engine::runWorkerSampleWithAppMsg() {
     /*
      * Run the worker
      */
-    runWorker("WorkerSampleWithAppMsg", hoge);
+    runWorker("WorkerMain", hoge);
 
     return true;
 }
@@ -56,10 +37,20 @@ bool Engine::runWorkerSampleWithAppMsg() {
  * OptiTrack
  */
 
-bool Engine::runOptiTrack() {
+bool Engine::runOptiTrackServer() {
 
-    registerWorkerWithAppMsg<WorkerOptiTrack>("OptiTrack");
-    runWorker("OptiTrack");
+    registerWorkerWithAppMsg<WorkerOptiTrackServer>("OptiTrackServer");
+    runWorker("OptiTrackServer");
 
     return true;
 }
+
+/**
+ *
+ */
+ bool Engine::runOptiTrackClient() {
+    registerWorkerWithAppMsg<WorkerOptiTrackClient>("OptiTrackClient");
+    runWorker("OptiTrackClient");
+
+    return true;
+ }
