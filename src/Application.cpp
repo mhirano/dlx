@@ -225,6 +225,12 @@ bool Application::run(){
                     engineSample->deleteAllWorker();
                 }
                 ImGui::NewLine(); ImGui::SameLine();
+                ImGui::Text("Delete images");
+                ImGui::NewLine(); ImGui::SameLine();
+                if (ImGui::Button("Delete images")) {
+                    texturePool.clear();
+                }
+                ImGui::NewLine(); ImGui::SameLine();
                 ImGui::Text("Exit program");
                 ImGui::NewLine(); ImGui::SameLine();
                 if (ImGui::Button("Exit")) {
